@@ -28,16 +28,16 @@ public class BasicUpdateMethodGenerator extends AbstractKotlinFunctionGenerator 
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction("update") //$NON-NLS-1$
-                .withExplicitReturnType("Int") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("updateStatement") //$NON-NLS-1$
-                        .withDataType("UpdateStatementProvider") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction("update")
+                .withExplicitReturnType("Int")
+                .withArgument(KotlinArg.newArg("updateStatement")
+                        .withDataType("UpdateStatementProvider")
                         .build())
-                .withAnnotation("@UpdateProvider(type=SqlProviderAdapter::class, method=\"update\")") //$NON-NLS-1$
+                .withAnnotation("@UpdateProvider(type=SqlProviderAdapter::class, method=\"update\")")
                 .build())
-                .withImport("org.mybatis.dynamic.sql.update.render.UpdateStatementProvider") //$NON-NLS-1$
-                .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter") //$NON-NLS-1$
-                .withImport("org.apache.ibatis.annotations.UpdateProvider") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.update.render.UpdateStatementProvider")
+                .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter")
+                .withImport("org.apache.ibatis.annotations.UpdateProvider")
                 .build();
         
         addFunctionComment(functionAndImports);

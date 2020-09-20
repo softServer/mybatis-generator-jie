@@ -40,7 +40,7 @@ public class ColumnListGenerator {
     
     public KotlinPropertyAndImports generatePropertyAndImports() {
         KotlinPropertyAndImports propertyAndImports = KotlinPropertyAndImports.withProperty(
-                KotlinProperty.newVal("columnList") //$NON-NLS-1$
+                KotlinProperty.newVal("columnList")
                 .withModifier(KotlinModifier.PRIVATE)
                 .withInitializationString(getInitializationString())
                 .build())
@@ -55,7 +55,7 @@ public class ColumnListGenerator {
     private String getInitializationString() {
         return introspectedTable.getAllColumns().stream()
                 .map(IntrospectedColumn::getJavaProperty)
-                .collect(Collectors.joining(", ", "listOf(", ")")); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                .collect(Collectors.joining(", ", "listOf(", ")")); //$NON-NLS-3$
     }
     
     private Set<String> getImports() {

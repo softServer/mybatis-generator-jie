@@ -32,15 +32,15 @@ public class GeneralSelectOneMethodGenerator extends AbstractKotlinFunctionGener
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".selectOne") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("completer") //$NON-NLS-1$
-                        .withDataType("SelectCompleter") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction(mapperName + ".selectOne")
+                .withArgument(KotlinArg.newArg("completer")
+                        .withDataType("SelectCompleter")
                         .build())
-                .withCodeLine("selectOne(this::selectOne, columnList, " + tableFieldName //$NON-NLS-1$
-                        + ", completer)") //$NON-NLS-1$
+                .withCodeLine("selectOne(this::selectOne, columnList, " + tableFieldName
+                        + ", completer)")
                 .build())
-                .withImport("org.mybatis.dynamic.sql.util.kotlin.*") //$NON-NLS-1$
-                .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.*") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.util.kotlin.*")
+                .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.*")
                 .build();
 
         addFunctionComment(functionAndImports);

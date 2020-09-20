@@ -79,8 +79,10 @@ public abstract class IntrospectedTable {
         ATTR_INSERT_SELECTIVE_STATEMENT_ID,
         ATTR_SELECT_ALL_STATEMENT_ID,
         ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID,
+        ATTR_SELECT_FIELD_BY_EXAMPLE_STATEMENT_ID,
         ATTR_SELECT_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
         ATTR_SELECT_BY_PRIMARY_KEY_STATEMENT_ID,
+        ATTR_SELECT_FIELD_BY_PRIMARY_KEY_STATEMENT_ID,
         ATTR_UPDATE_BY_EXAMPLE_STATEMENT_ID,
         ATTR_UPDATE_BY_EXAMPLE_SELECTIVE_STATEMENT_ID,
         ATTR_UPDATE_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID,
@@ -409,27 +411,29 @@ public abstract class IntrospectedTable {
         setSqlMapFullyQualifiedRuntimeTableName(calculateSqlMapFullyQualifiedRuntimeTableName());
         setSqlMapAliasedFullyQualifiedRuntimeTableName(calculateSqlMapAliasedFullyQualifiedRuntimeTableName());
 
-        setCountByExampleStatementId("countByExample"); //$NON-NLS-1$
-        setDeleteByExampleStatementId("deleteByExample"); //$NON-NLS-1$
-        setDeleteByPrimaryKeyStatementId("deleteByPrimaryKey"); //$NON-NLS-1$
-        setInsertStatementId("insert"); //$NON-NLS-1$
-        setInsertSelectiveStatementId("insertSelective"); //$NON-NLS-1$
-        setSelectAllStatementId("selectAll"); //$NON-NLS-1$
-        setSelectByExampleStatementId("selectByExample"); //$NON-NLS-1$
-        setSelectByExampleWithBLOBsStatementId("selectByExampleWithBLOBs"); //$NON-NLS-1$
-        setSelectByPrimaryKeyStatementId("selectByPrimaryKey"); //$NON-NLS-1$
-        setUpdateByExampleStatementId("updateByExample"); //$NON-NLS-1$
-        setUpdateByExampleSelectiveStatementId("updateByExampleSelective"); //$NON-NLS-1$
-        setUpdateByExampleWithBLOBsStatementId("updateByExampleWithBLOBs"); //$NON-NLS-1$
-        setUpdateByPrimaryKeyStatementId("updateByPrimaryKey"); //$NON-NLS-1$
-        setUpdateByPrimaryKeySelectiveStatementId("updateByPrimaryKeySelective"); //$NON-NLS-1$
-        setUpdateByPrimaryKeyWithBLOBsStatementId("updateByPrimaryKeyWithBLOBs"); //$NON-NLS-1$
-        setBaseResultMapId("BaseResultMap"); //$NON-NLS-1$
-        setResultMapWithBLOBsId("ResultMapWithBLOBs"); //$NON-NLS-1$
-        setExampleWhereClauseId("Example_Where_Clause"); //$NON-NLS-1$
-        setBaseColumnListId("Base_Column_List"); //$NON-NLS-1$
-        setBlobColumnListId("Blob_Column_List"); //$NON-NLS-1$
-        setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause"); //$NON-NLS-1$
+        setCountByExampleStatementId("countByExample");
+        setDeleteByExampleStatementId("deleteByExample");
+        setDeleteByPrimaryKeyStatementId("deleteByPrimaryKey");
+        setInsertStatementId("insert");
+        setInsertSelectiveStatementId("insertSelective");
+        setSelectAllStatementId("selectAll");
+        setSelectByExampleStatementId("selectByExample");
+        setSelectFieldByExampleStatementId("selectFieldByExample");
+        setSelectByExampleWithBLOBsStatementId("selectByExampleWithBLOBs");
+        setSelectByPrimaryKeyStatementId("selectByPrimaryKey");
+        setSelectFieldByPrimaryKeyStatementId("selectFieldByPrimaryKey");
+        setUpdateByExampleStatementId("updateByExample");
+        setUpdateByExampleSelectiveStatementId("updateByExampleSelective");
+        setUpdateByExampleWithBLOBsStatementId("updateByExampleWithBLOBs");
+        setUpdateByPrimaryKeyStatementId("updateByPrimaryKey");
+        setUpdateByPrimaryKeySelectiveStatementId("updateByPrimaryKeySelective");
+        setUpdateByPrimaryKeyWithBLOBsStatementId("updateByPrimaryKeyWithBLOBs");
+        setBaseResultMapId("BaseResultMap");
+        setResultMapWithBLOBsId("ResultMapWithBLOBs");
+        setExampleWhereClauseId("Example_Where_Clause");
+        setBaseColumnListId("Base_Column_List");
+        setBlobColumnListId("Blob_Column_List");
+        setMyBatis3UpdateByExampleWhereClauseId("Update_By_Example_Where_Clause");
     }
 
     public void setBlobColumnListId(String s) {
@@ -501,6 +505,11 @@ public abstract class IntrospectedTable {
                 InternalAttribute.ATTR_SELECT_BY_PRIMARY_KEY_STATEMENT_ID, s);
     }
 
+    public void setSelectFieldByPrimaryKeyStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.ATTR_SELECT_FIELD_BY_PRIMARY_KEY_STATEMENT_ID, s);
+    }
+
     public void setSelectByExampleWithBLOBsStatementId(String s) {
         internalAttributes
                 .put(
@@ -516,6 +525,11 @@ public abstract class IntrospectedTable {
     public void setSelectByExampleStatementId(String s) {
         internalAttributes.put(
                 InternalAttribute.ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID, s);
+    }
+
+    public void setSelectFieldByExampleStatementId(String s) {
+        internalAttributes.put(
+                InternalAttribute.ATTR_SELECT_FIELD_BY_EXAMPLE_STATEMENT_ID, s);
     }
 
     public void setInsertSelectiveStatementId(String s) {
@@ -607,6 +621,11 @@ public abstract class IntrospectedTable {
                 .get(InternalAttribute.ATTR_SELECT_BY_PRIMARY_KEY_STATEMENT_ID);
     }
 
+    public String getSelectFieldByPrimaryKeyStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_SELECT_FIELD_BY_PRIMARY_KEY_STATEMENT_ID);
+    }
+
     public String getSelectByExampleWithBLOBsStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_SELECT_BY_EXAMPLE_WITH_BLOBS_STATEMENT_ID);
@@ -620,6 +639,11 @@ public abstract class IntrospectedTable {
     public String getSelectByExampleStatementId() {
         return internalAttributes
                 .get(InternalAttribute.ATTR_SELECT_BY_EXAMPLE_STATEMENT_ID);
+    }
+
+    public String getSelectFieldByExampleStatementId() {
+        return internalAttributes
+                .get(InternalAttribute.ATTR_SELECT_FIELD_BY_EXAMPLE_STATEMENT_ID);
     }
 
     public String getInsertSelectiveStatementId() {
@@ -682,7 +706,7 @@ public abstract class IntrospectedTable {
                 sb.append('.');
             }
             sb.append(fullyQualifiedTable.getDomainObjectName());
-            sb.append("Mapper"); //$NON-NLS-1$
+            sb.append("Mapper");
         }
         setMyBatis3JavaMapperType(sb.toString());
 
@@ -697,7 +721,7 @@ public abstract class IntrospectedTable {
                 sb.append('.');
             }
             sb.append(fullyQualifiedTable.getDomainObjectName());
-            sb.append("SqlProvider"); //$NON-NLS-1$
+            sb.append("SqlProvider");
         }
         setMyBatis3SqlProviderType(sb.toString());
         
@@ -705,7 +729,7 @@ public abstract class IntrospectedTable {
         sb.append(calculateJavaClientInterfacePackage());
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
-        sb.append("DynamicSqlSupport"); //$NON-NLS-1$
+        sb.append("DynamicSqlSupport");
         setMyBatisDynamicSqlSupportType(sb.toString());
     }
 
@@ -727,7 +751,7 @@ public abstract class IntrospectedTable {
         sb.append(pakkage);
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
-        sb.append("Key"); //$NON-NLS-1$
+        sb.append("Key");
         setPrimaryKeyType(sb.toString());
 
         sb.setLength(0);
@@ -740,14 +764,14 @@ public abstract class IntrospectedTable {
         sb.append(pakkage);
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
-        sb.append("Record"); //$NON-NLS-1$
+        sb.append("Record");
         setKotlinRecordType(sb.toString());
 
         sb.setLength(0);
         sb.append(pakkage);
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
-        sb.append("WithBLOBs"); //$NON-NLS-1$
+        sb.append("WithBLOBs");
         setRecordWithBLOBsType(sb.toString());
 
         String exampleTargetPackage = calculateJavaModelExamplePackage();
@@ -755,7 +779,7 @@ public abstract class IntrospectedTable {
         sb.append(exampleTargetPackage);
         sb.append('.');
         sb.append(fullyQualifiedTable.getDomainObjectName());
-        sb.append("Example"); //$NON-NLS-1$
+        sb.append("Example");
         setExampleType(sb.toString());
     }
 
@@ -811,10 +835,10 @@ public abstract class IntrospectedTable {
             } else {
                 sb.append(mapperName.substring(ind + 1));
             }
-            sb.append(".xml"); //$NON-NLS-1$
+            sb.append(".xml");
         } else {
             sb.append(fullyQualifiedTable.getDomainObjectName());
-            sb.append("Mapper.xml"); //$NON-NLS-1$
+            sb.append("Mapper.xml");
         }
         return sb.toString();
     }
@@ -827,7 +851,7 @@ public abstract class IntrospectedTable {
             sb.append(tableConfiguration.getMapperName());
         } else {
             sb.append(fullyQualifiedTable.getDomainObjectName());
-            sb.append("Mapper"); //$NON-NLS-1$
+            sb.append("Mapper");
         }
         return sb.toString();
     }

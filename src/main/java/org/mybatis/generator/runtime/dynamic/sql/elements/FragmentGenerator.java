@@ -48,7 +48,7 @@ public class FragmentGenerator {
     public String getSelectList() {
         return introspectedTable.getAllColumns().stream()
                 .map(c -> AbstractMethodGenerator.calculateFieldName(tableFieldName, c))
-                .collect(Collectors.joining(", ")); //$NON-NLS-1$
+                .collect(Collectors.joining(", "));
     }
     
     public MethodParts getPrimaryKeyWhereClauseAndParameters() {
@@ -59,16 +59,16 @@ public class FragmentGenerator {
             String fieldName = AbstractMethodGenerator.calculateFieldName(tableFieldName, column);
             builder.withImport(column.getFullyQualifiedJavaType());
             builder.withParameter(new Parameter(
-                    column.getFullyQualifiedJavaType(), column.getJavaProperty() + "_")); //$NON-NLS-1$
+                    column.getFullyQualifiedJavaType(), column.getJavaProperty() + "_"));
             if (first) {
-                builder.withBodyLine("        .where(" + fieldName //$NON-NLS-1$
-                        + ", isEqualTo(" + column.getJavaProperty() //$NON-NLS-1$
-                        + "_))"); //$NON-NLS-1$
+                builder.withBodyLine("        .where(" + fieldName
+                        + ", isEqualTo(" + column.getJavaProperty()
+                        + "_))");
                 first = false;
             } else {
-                builder.withBodyLine("        .and(" + fieldName //$NON-NLS-1$
-                        + ", isEqualTo(" + column.getJavaProperty() //$NON-NLS-1$
-                        + "_))"); //$NON-NLS-1$
+                builder.withBodyLine("        .and(" + fieldName
+                        + ", isEqualTo(" + column.getJavaProperty()
+                        + "_))");
             }
         }
         
@@ -83,19 +83,19 @@ public class FragmentGenerator {
             String fieldName = AbstractMethodGenerator.calculateFieldName(tableFieldName, column);
             builder.withImport(column.getFullyQualifiedJavaType());
             builder.withParameter(new Parameter(
-                    column.getFullyQualifiedJavaType(), column.getJavaProperty() + "_")); //$NON-NLS-1$
+                    column.getFullyQualifiedJavaType(), column.getJavaProperty() + "_"));
             if (first) {
-                builder.withBodyLine("    c.where(" + fieldName //$NON-NLS-1$
-                        + ", isEqualTo(" + column.getJavaProperty() //$NON-NLS-1$
-                        + "_))"); //$NON-NLS-1$
+                builder.withBodyLine("    c.where(" + fieldName
+                        + ", isEqualTo(" + column.getJavaProperty()
+                        + "_))");
                 first = false;
             } else {
-                builder.withBodyLine("    .and(" + fieldName //$NON-NLS-1$
-                        + ", isEqualTo(" + column.getJavaProperty() //$NON-NLS-1$
-                        + "_))"); //$NON-NLS-1$
+                builder.withBodyLine("    .and(" + fieldName
+                        + ", isEqualTo(" + column.getJavaProperty()
+                        + "_))");
             }
         }
-        builder.withBodyLine(");"); //$NON-NLS-1$
+        builder.withBodyLine(");");
         
         return builder.build();
     }
@@ -109,14 +109,14 @@ public class FragmentGenerator {
             String methodName = JavaBeansUtil.getGetterMethodName(
                     column.getJavaProperty(), column.getFullyQualifiedJavaType());
             if (first) {
-                lines.add(prefix + ".where(" + fieldName //$NON-NLS-1$
-                        + ", isEqualTo(record::" + methodName //$NON-NLS-1$
-                        + "))"); //$NON-NLS-1$
+                lines.add(prefix + ".where(" + fieldName
+                        + ", isEqualTo(record::" + methodName
+                        + "))");
                 first = false;
             } else {
-                lines.add(prefix + ".and(" + fieldName //$NON-NLS-1$
-                        + ", isEqualTo(record::" + methodName //$NON-NLS-1$
-                        + "))"); //$NON-NLS-1$
+                lines.add(prefix + ".and(" + fieldName
+                        + ", isEqualTo(record::" + methodName
+                        + "))");
             }
         }
         
@@ -126,11 +126,11 @@ public class FragmentGenerator {
     public MethodParts getAnnotatedConstructorArgs() {
         MethodParts.Builder builder = new MethodParts.Builder();
 
-        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.type.JdbcType")); //$NON-NLS-1$
-        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.ConstructorArgs")); //$NON-NLS-1$
-        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Arg")); //$NON-NLS-1$
+        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.type.JdbcType"));
+        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.ConstructorArgs"));
+        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Arg"));
 
-        builder.withAnnotation("@ConstructorArgs({"); //$NON-NLS-1$
+        builder.withAnnotation("@ConstructorArgs({");
 
         StringBuilder sb = new StringBuilder();
 
@@ -163,7 +163,7 @@ public class FragmentGenerator {
             builder.withAnnotation(sb.toString());
         }
 
-        builder.withAnnotation("})") //$NON-NLS-1$
+        builder.withAnnotation("})")
             .withImports(imports);
         
         return builder.build();
@@ -172,27 +172,27 @@ public class FragmentGenerator {
     private String getArgAnnotation(Set<FullyQualifiedJavaType> imports, IntrospectedColumn introspectedColumn,
             boolean idColumn) {
         StringBuilder sb = new StringBuilder();
-        sb.append("@Arg(column=\""); //$NON-NLS-1$
+        sb.append("@Arg(column=\"");
         sb.append(introspectedColumn.getActualColumnName());
         
         imports.add(introspectedColumn.getFullyQualifiedJavaType());
-        sb.append("\", javaType="); //$NON-NLS-1$
+        sb.append("\", javaType=");
         sb.append(introspectedColumn.getFullyQualifiedJavaType().getShortName());
-        sb.append(".class"); //$NON-NLS-1$
+        sb.append(".class");
 
         if (stringHasValue(introspectedColumn.getTypeHandler())) {
             FullyQualifiedJavaType fqjt =
                     new FullyQualifiedJavaType(introspectedColumn.getTypeHandler());
             imports.add(fqjt);
-            sb.append(", typeHandler="); //$NON-NLS-1$
+            sb.append(", typeHandler=");
             sb.append(fqjt.getShortName());
-            sb.append(".class"); //$NON-NLS-1$
+            sb.append(".class");
         }
 
-        sb.append(", jdbcType=JdbcType."); //$NON-NLS-1$
+        sb.append(", jdbcType=JdbcType.");
         sb.append(introspectedColumn.getJdbcTypeName());
         if (idColumn) {
-            sb.append(", id=true"); //$NON-NLS-1$
+            sb.append(", id=true");
         }
         sb.append(')');
 
@@ -202,11 +202,11 @@ public class FragmentGenerator {
     public MethodParts getAnnotatedResults() {
         MethodParts.Builder builder = new MethodParts.Builder();
 
-        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.type.JdbcType")); //$NON-NLS-1$
-        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Result")); //$NON-NLS-1$
-        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Results")); //$NON-NLS-1$
+        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.type.JdbcType"));
+        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Result"));
+        builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Results"));
 
-        builder.withAnnotation("@Results(id=\"" + resultMapId + "\", value = {"); //$NON-NLS-1$ //$NON-NLS-2$
+        builder.withAnnotation("@Results(id=\"" + resultMapId + "\", value = {");
 
         StringBuilder sb = new StringBuilder();
 
@@ -239,7 +239,7 @@ public class FragmentGenerator {
             builder.withAnnotation(sb.toString());
         }
 
-        builder.withAnnotation("})") //$NON-NLS-1$
+        builder.withAnnotation("})")
             .withImports(imports);
         
         return builder.build();
@@ -248,9 +248,9 @@ public class FragmentGenerator {
     private String getResultAnnotation(Set<FullyQualifiedJavaType> imports, IntrospectedColumn introspectedColumn,
             boolean idColumn) {
         StringBuilder sb = new StringBuilder();
-        sb.append("@Result(column=\""); //$NON-NLS-1$
+        sb.append("@Result(column=\"");
         sb.append(introspectedColumn.getActualColumnName());
-        sb.append("\", property=\""); //$NON-NLS-1$
+        sb.append("\", property=\"");
         sb.append(introspectedColumn.getJavaProperty());
         sb.append('\"');
 
@@ -258,15 +258,15 @@ public class FragmentGenerator {
             FullyQualifiedJavaType fqjt =
                     new FullyQualifiedJavaType(introspectedColumn.getTypeHandler());
             imports.add(fqjt);
-            sb.append(", typeHandler="); //$NON-NLS-1$
+            sb.append(", typeHandler=");
             sb.append(fqjt.getShortName());
-            sb.append(".class"); //$NON-NLS-1$
+            sb.append(".class");
         }
 
-        sb.append(", jdbcType=JdbcType."); //$NON-NLS-1$
+        sb.append(", jdbcType=JdbcType.");
         sb.append(introspectedColumn.getJdbcTypeName());
         if (idColumn) {
-            sb.append(", id=true"); //$NON-NLS-1$
+            sb.append(", id=true");
         }
         sb.append(')');
 
@@ -279,23 +279,23 @@ public class FragmentGenerator {
         StringBuilder sb = new StringBuilder();
         introspectedTable.getColumn(gk.getColumn()).ifPresent(introspectedColumn -> {
             if (gk.isJdbcStandard()) {
-                builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Options")); //$NON-NLS-1$
-                sb.append("@Options(useGeneratedKeys=true,keyProperty=\"record."); //$NON-NLS-1$
+                builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Options"));
+                sb.append("@Options(useGeneratedKeys=true,keyProperty=\"record.");
                 sb.append(introspectedColumn.getJavaProperty());
-                sb.append("\")"); //$NON-NLS-1$
+                sb.append("\")");
                 builder.withAnnotation(sb.toString());
             } else {
-                builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectKey")); //$NON-NLS-1$
+                builder.withImport(new FullyQualifiedJavaType("org.apache.ibatis.annotations.SelectKey"));
                 FullyQualifiedJavaType fqjt = introspectedColumn.getFullyQualifiedJavaType();
-                sb.append("@SelectKey(statement=\""); //$NON-NLS-1$
+                sb.append("@SelectKey(statement=\"");
                 sb.append(gk.getRuntimeSqlStatement());
-                sb.append("\", keyProperty=\"record."); //$NON-NLS-1$
+                sb.append("\", keyProperty=\"record.");
                 sb.append(introspectedColumn.getJavaProperty());
-                sb.append("\", before="); //$NON-NLS-1$
-                sb.append(gk.isIdentity() ? "false" : "true"); //$NON-NLS-1$ //$NON-NLS-2$
-                sb.append(", resultType="); //$NON-NLS-1$
+                sb.append("\", before=");
+                sb.append(gk.isIdentity() ? "false" : "true");
+                sb.append(", resultType=");
                 sb.append(fqjt.getShortName());
-                sb.append(".class)"); //$NON-NLS-1$
+                sb.append(".class)");
                 builder.withAnnotation(sb.toString());
             }
         });
@@ -312,11 +312,11 @@ public class FragmentGenerator {
             String fieldName = AbstractMethodGenerator.calculateFieldName(tableFieldName, column);
             String methodName = JavaBeansUtil.getGetterMethodName(column.getJavaProperty(),
                     column.getFullyQualifiedJavaType());
-            String line = "        .set(" + fieldName //$NON-NLS-1$
-                    + ").equalTo(record::" + methodName //$NON-NLS-1$
-                    + ")"; //$NON-NLS-1$
+            String line = "        .set(" + fieldName
+                    + ").equalTo(record::" + methodName
+                    + ")";
             if (terminate && !iter.hasNext()) {
-                line += ";"; //$NON-NLS-1$
+                line += ";";
             }
             lines.add(line);
         }
@@ -344,12 +344,12 @@ public class FragmentGenerator {
                 start = subsequentLinePrefix;
             }
             
-            String line = start + ".set(" + fieldName //$NON-NLS-1$
-                    + ").equalTo(record::" + methodName //$NON-NLS-1$
-                    + ")"; //$NON-NLS-1$
+            String line = start + ".set(" + fieldName
+                    + ").equalTo(record::" + methodName
+                    + ")";
             
             if (terminate && !iter.hasNext()) {
-                line += ";"; //$NON-NLS-1$
+                line += ";";
             }
             
             lines.add(line);
@@ -367,11 +367,11 @@ public class FragmentGenerator {
             String fieldName = AbstractMethodGenerator.calculateFieldName(tableFieldName, column);
             String methodName = JavaBeansUtil.getGetterMethodName(column.getJavaProperty(),
                     column.getFullyQualifiedJavaType());
-            String line = "        .set(" + fieldName //$NON-NLS-1$
-                    + ").equalToWhenPresent(record::" //$NON-NLS-1$
-                    + methodName + ")"; //$NON-NLS-1$
+            String line = "        .set(" + fieldName
+                    + ").equalToWhenPresent(record::"
+                    + methodName + ")";
             if (terminate && !iter.hasNext()) {
-                line += ";"; //$NON-NLS-1$
+                line += ";";
             }
             lines.add(line);
         }
@@ -398,12 +398,12 @@ public class FragmentGenerator {
                 start = subsequentLinePrefix;
             }
             
-            String line = start + ".set(" + fieldName //$NON-NLS-1$
-                    + ").equalToWhenPresent(record::" + methodName //$NON-NLS-1$
-                    + ")"; //$NON-NLS-1$
+            String line = start + ".set(" + fieldName
+                    + ").equalToWhenPresent(record::" + methodName
+                    + ")";
             
             if (terminate && !iter.hasNext()) {
-                line += ";"; //$NON-NLS-1$
+                line += ";";
             }
             
             lines.add(line);

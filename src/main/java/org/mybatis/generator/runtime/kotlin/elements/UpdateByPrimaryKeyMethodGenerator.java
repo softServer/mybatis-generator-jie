@@ -43,11 +43,11 @@ public class UpdateByPrimaryKeyMethodGenerator extends AbstractKotlinFunctionGen
         }
         
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".updateByPrimaryKey") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("record") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction(mapperName + ".updateByPrimaryKey")
+                .withArgument(KotlinArg.newArg("record")
                         .withDataType(recordType.getShortNameWithTypeArguments())
                         .build())
-                .withCodeLine("update {") //$NON-NLS-1$
+                .withCodeLine("update {")
                 .build())
                 .withImports(recordType.getImportList())
                 .build();

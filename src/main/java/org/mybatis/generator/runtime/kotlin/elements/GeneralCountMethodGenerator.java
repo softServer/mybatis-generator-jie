@@ -33,14 +33,14 @@ public class GeneralCountMethodGenerator extends AbstractKotlinFunctionGenerator
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".count") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("completer") //$NON-NLS-1$
-                        .withDataType("CountCompleter") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction(mapperName + ".count")
+                .withArgument(KotlinArg.newArg("completer")
+                        .withDataType("CountCompleter")
                         .build())
-                .withCodeLine("countFrom(this::count, " + tableFieldName + ", completer)") //$NON-NLS-1$ //$NON-NLS-2$
+                .withCodeLine("countFrom(this::count, " + tableFieldName + ", completer)")
                 .build())
-                .withImport("org.mybatis.dynamic.sql.util.kotlin.*") //$NON-NLS-1$
-                .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.*") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.util.kotlin.*")
+                .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.*")
                 .withImport(tableFieldImport)
                 .build();
 

@@ -44,23 +44,23 @@ public class InsertMultipleMethodGenerator extends AbstractMethodGenerator {
         
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
 
-        imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils")); //$NON-NLS-1$
+        imports.add(new FullyQualifiedJavaType("org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils"));
         imports.add(recordType);
         
-        Method method = new Method("insertMultiple"); //$NON-NLS-1$
+        Method method = new Method("insertMultiple");
         method.setDefault(true);
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
         
-        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType("java.util.Collection"); //$NON-NLS-1$
+        FullyQualifiedJavaType parameterType = new FullyQualifiedJavaType("java.util.Collection");
         parameterType.addTypeArgument(recordType);
         imports.add(parameterType);
         
-        method.addParameter(new Parameter(parameterType, "records")); //$NON-NLS-1$
+        method.addParameter(new Parameter(parameterType, "records"));
         
-        method.addBodyLine("return MyBatis3Utils.insertMultiple(this::insertMultiple, records, " + //$NON-NLS-1$
-                tableFieldName + //$NON-NLS-1$
-                ", c ->"); //$NON-NLS-1$
+        method.addBodyLine("return MyBatis3Utils.insertMultiple(this::insertMultiple, records, " +
+                tableFieldName +
+                ", c ->");
         
         List<IntrospectedColumn> columns =
                 ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
@@ -69,18 +69,18 @@ public class InsertMultipleMethodGenerator extends AbstractMethodGenerator {
             String fieldName = calculateFieldName(column);
             
             if (first) {
-                method.addBodyLine("    c.map(" + fieldName //$NON-NLS-1$
-                        + ").toProperty(\"" + column.getJavaProperty() //$NON-NLS-1$
-                        + "\")"); //$NON-NLS-1$
+                method.addBodyLine("    c.map(" + fieldName
+                        + ").toProperty(\"" + column.getJavaProperty()
+                        + "\")");
                 first = false;
             } else {
-                method.addBodyLine("    .map(" + fieldName //$NON-NLS-1$
-                        + ").toProperty(\"" + column.getJavaProperty() //$NON-NLS-1$
-                        + "\")"); //$NON-NLS-1$
+                method.addBodyLine("    .map(" + fieldName
+                        + ").toProperty(\"" + column.getJavaProperty()
+                        + "\")");
             }
         }
         
-        method.addBodyLine(");"); //$NON-NLS-1$
+        method.addBodyLine(");");
 
         return MethodAndImports.withMethod(method)
                 .withImports(imports)

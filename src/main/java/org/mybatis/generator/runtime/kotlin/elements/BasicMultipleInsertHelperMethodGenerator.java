@@ -41,16 +41,16 @@ public class BasicMultipleInsertHelperMethodGenerator extends AbstractKotlinFunc
         }
   
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".insertMultipleHelper") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("multipleInsertStatement") //$NON-NLS-1$
-                        .withDataType("MultiRowInsertStatementProvider<" //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction(mapperName + ".insertMultipleHelper")
+                .withArgument(KotlinArg.newArg("multipleInsertStatement")
+                        .withDataType("MultiRowInsertStatementProvider<"
                                 + recordType.getShortNameWithTypeArguments()
-                                + ">") //$NON-NLS-1$
+                                + ">")
                         .build())
-                .withCodeLine("insertMultiple(multipleInsertStatement.insertStatement," //$NON-NLS-1$
-                        + " multipleInsertStatement.records)") //$NON-NLS-1$
+                .withCodeLine("insertMultiple(multipleInsertStatement.insertStatement,"
+                        + " multipleInsertStatement.records)")
                 .build())
-                .withImport("org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider")
                 .withImports(recordType.getImportList())
                 .build();
         

@@ -41,23 +41,23 @@ public class UpdateAllColumnsMethodGenerator extends AbstractMethodGenerator {
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
 
         FullyQualifiedJavaType parameterAndReturnType = new FullyQualifiedJavaType(
-                "org.mybatis.dynamic.sql.update.UpdateDSL"); //$NON-NLS-1$
+                "org.mybatis.dynamic.sql.update.UpdateDSL");
         parameterAndReturnType.addTypeArgument(new FullyQualifiedJavaType(
-                "org.mybatis.dynamic.sql.update.UpdateModel")); //$NON-NLS-1$
+                "org.mybatis.dynamic.sql.update.UpdateModel"));
         imports.add(parameterAndReturnType);
 
         imports.add(recordType);
         
-        Method method = new Method("updateAllColumns"); //$NON-NLS-1$
+        Method method = new Method("updateAllColumns");
         method.setStatic(true);
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         
         method.setReturnType(parameterAndReturnType);
-        method.addParameter(new Parameter(recordType, "record")); //$NON-NLS-1$
-        method.addParameter(new Parameter(parameterAndReturnType, "dsl")); //$NON-NLS-1$
+        method.addParameter(new Parameter(recordType, "record"));
+        method.addParameter(new Parameter(parameterAndReturnType, "dsl"));
 
         method.addBodyLines(fragmentGenerator.getSetEqualLinesV2(introspectedTable.getAllColumns(),
-                "return dsl", "        ", true)); //$NON-NLS-1$ //$NON-NLS-2$
+                "return dsl", "        ", true));
 
         return MethodAndImports.withMethod(method)
                 .withImports(imports)

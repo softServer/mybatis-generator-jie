@@ -48,7 +48,7 @@ public abstract class AbstractDynamicSqlMapperGenerator extends AbstractJavaClie
 
     protected void preCalculate() {
         recordType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
-        resultMapId = recordType.getShortNameWithoutTypeArguments() + "Result"; //$NON-NLS-1$
+        resultMapId = recordType.getShortNameWithoutTypeArguments() + "Result";
         tableFieldName =
                 JavaBeansUtil.getValidPropertyName(introspectedTable.getFullyQualifiedTable().getDomainObjectName());
         fragmentGenerator = new FragmentGenerator.Builder()
@@ -64,8 +64,8 @@ public abstract class AbstractDynamicSqlMapperGenerator extends AbstractJavaClie
         Interface interfaze = new Interface(type);
         interfaze.setVisibility(JavaVisibility.PUBLIC);
         context.getCommentGenerator().addJavaFileComment(interfaze);
-        interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper")); //$NON-NLS-1$
-        interfaze.addAnnotation("@Mapper"); //$NON-NLS-1$
+        interfaze.addImportedType(new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper"));
+        interfaze.addAnnotation("@Mapper");
 
         String rootInterface = introspectedTable
                 .getTableConfigurationProperty(PropertyRegistry.ANY_ROOT_INTERFACE);

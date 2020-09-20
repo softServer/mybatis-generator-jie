@@ -39,12 +39,12 @@ public class InsertMethodGenerator extends AbstractKotlinFunctionGenerator {
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".insert") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("record") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction(mapperName + ".insert")
+                .withArgument(KotlinArg.newArg("record")
                         .withDataType(recordType.getShortNameWithTypeArguments())
                         .build())
                 .build())
-                .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.*") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.util.kotlin.mybatis3.*")
                 .withImports(recordType.getImportList())
                 .build();
 
@@ -52,21 +52,21 @@ public class InsertMethodGenerator extends AbstractKotlinFunctionGenerator {
         
         KotlinFunction function = functionAndImports.getFunction();
         
-        function.addCodeLine("insert(this::insert, record, " + tableFieldName + //$NON-NLS-1$
-                ") {"); //$NON-NLS-1$
+        function.addCodeLine("insert(this::insert, record, " + tableFieldName +
+                ") {");
         
         List<IntrospectedColumn> columns =
                 ListUtilities.removeIdentityAndGeneratedAlwaysColumns(introspectedTable.getAllColumns());
         for (IntrospectedColumn column : columns) {
             String fieldName = column.getJavaProperty();
-            functionAndImports.getImports().add(tableFieldImport + "." + fieldName); //$NON-NLS-1$
+            functionAndImports.getImports().add(tableFieldImport + "." + fieldName);
             
-            function.addCodeLine("    map(" + fieldName //$NON-NLS-1$
-                    + ").toProperty(\"" + column.getJavaProperty() //$NON-NLS-1$
-                    + "\")"); //$NON-NLS-1$
+            function.addCodeLine("    map(" + fieldName
+                    + ").toProperty(\"" + column.getJavaProperty()
+                    + "\")");
         }
         
-        function.addCodeLine("}"); //$NON-NLS-1$
+        function.addCodeLine("}");
         
         return functionAndImports;
     }

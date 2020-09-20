@@ -73,7 +73,7 @@ public class KotlinMapperAndExtensionsGenerator extends AbstractKotlinGenerator 
     protected void preCalculate() {
         supportClassGenerator = new KotlinDynamicSqlSupportClassGenerator(context, introspectedTable);
         recordType = new FullyQualifiedKotlinType(introspectedTable.getKotlinRecordType());
-        resultMapId = recordType.getShortNameWithoutTypeArguments() + "Result"; //$NON-NLS-1$
+        resultMapId = recordType.getShortNameWithoutTypeArguments() + "Result";
         fragmentGenerator = new KotlinFragmentGenerator.Builder()
                 .withIntrospectedTable(introspectedTable)
                 .withResultMapId(resultMapId)
@@ -95,7 +95,7 @@ public class KotlinMapperAndExtensionsGenerator extends AbstractKotlinGenerator 
         FullyQualifiedKotlinType type = new FullyQualifiedKotlinType(
                 introspectedTable.getMyBatis3JavaMapperType());
         
-        KotlinFile kf = new KotlinFile(type.getShortNameWithoutTypeArguments() + "Extensions"); //$NON-NLS-1$
+        KotlinFile kf = new KotlinFile(type.getShortNameWithoutTypeArguments() + "Extensions");
         kf.setPackage(type.getPackageName());
         context.getCommentGenerator().addFileComment(kf);
         
@@ -107,10 +107,10 @@ public class KotlinMapperAndExtensionsGenerator extends AbstractKotlinGenerator 
                 introspectedTable.getMyBatis3JavaMapperType());
         
         KotlinType intf = KotlinType.newInterface(type.getShortNameWithoutTypeArguments())
-                .withAnnotation("@Mapper") //$NON-NLS-1$
+                .withAnnotation("@Mapper")
                 .build();
         
-        kotlinFile.addImport("org.apache.ibatis.annotations.Mapper"); //$NON-NLS-1$
+        kotlinFile.addImport("org.apache.ibatis.annotations.Mapper");
         kotlinFile.addNamedItem(intf);
                 
         context.getCommentGenerator().addFileComment(kotlinFile);
@@ -191,7 +191,7 @@ public class KotlinMapperAndExtensionsGenerator extends AbstractKotlinGenerator 
     
     @Override
     public List<KotlinFile> getKotlinFiles() {
-        progressCallback.startTask(getString("Progress.17", //$NON-NLS-1$
+        progressCallback.startTask(getString("Progress.17",
                 introspectedTable.getFullyQualifiedTable().toString()));
         preCalculate();
         

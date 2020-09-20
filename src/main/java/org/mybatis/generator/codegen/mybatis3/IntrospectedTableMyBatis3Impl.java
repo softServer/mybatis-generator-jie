@@ -112,13 +112,13 @@ public class IntrospectedTableMyBatis3Impl extends IntrospectedTable {
                 .getConfigurationType();
 
         AbstractJavaClientGenerator javaGenerator;
-        if ("XMLMAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        if ("XMLMAPPER".equalsIgnoreCase(type)) {
             javaGenerator = new JavaMapperGenerator(getClientProject());
-        } else if ("MIXEDMAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        } else if ("MIXEDMAPPER".equalsIgnoreCase(type)) {
             javaGenerator = new MixedClientGenerator(getClientProject());
-        } else if ("ANNOTATEDMAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        } else if ("ANNOTATEDMAPPER".equalsIgnoreCase(type)) {
             javaGenerator = new AnnotatedClientGenerator(getClientProject());
-        } else if ("MAPPER".equalsIgnoreCase(type)) { //$NON-NLS-1$
+        } else if ("MAPPER".equalsIgnoreCase(type)) {
             javaGenerator = new JavaMapperGenerator(getClientProject());
         } else {
             javaGenerator = (AbstractJavaClientGenerator) ObjectFactory

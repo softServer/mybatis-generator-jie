@@ -25,8 +25,8 @@ public class KotlinProperty extends KotlinNamedItem {
     private Type type;
 
     public enum Type {
-        VAL("val"), //$NON-NLS-1$
-        VAR("var"); //$NON-NLS-1$
+        VAL("val"),
+        VAR("var");
 
         private String value;
 

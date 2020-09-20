@@ -71,9 +71,9 @@ public class KotlinDynamicSqlSupportClassGenerator {
     }
     
     public String getInnerObjectImport() {
-        return kotlinFile.getPackage().map(s -> s + ".").orElse("") //$NON-NLS-1$ //$NON-NLS-2$
+        return kotlinFile.getPackage().map(s -> s + ".").orElse("")
                 + outerObject.getName()
-                + "." //$NON-NLS-1$
+                + "."
                 + innerObject.getName();
     }
     
@@ -89,8 +89,8 @@ public class KotlinDynamicSqlSupportClassGenerator {
         KotlinType outerObject = KotlinType.newObject(type.getShortNameWithoutTypeArguments())
                 .build();
                 
-        kotlinFile.addImport("org.mybatis.dynamic.sql.SqlTable"); //$NON-NLS-1$
-        kotlinFile.addImport("java.sql.JDBCType"); //$NON-NLS-1$
+        kotlinFile.addImport("org.mybatis.dynamic.sql.SqlTable");
+        kotlinFile.addImport("java.sql.JDBCType");
         kotlinFile.addNamedItem(outerObject);
         return outerObject;
     }
@@ -100,9 +100,9 @@ public class KotlinDynamicSqlSupportClassGenerator {
         String domainObjectName = introspectedTable.getFullyQualifiedTable().getDomainObjectName();
 
         return KotlinType.newObject(domainObjectName)
-                .withSuperType("SqlTable(\"" //$NON-NLS-1$
+                .withSuperType("SqlTable(\""
                         + escapeStringForKotlin(introspectedTable.getFullyQualifiedTableNameAtRuntime())
-                        + "\")") //$NON-NLS-1$
+                        + "\")")
                 .build();
     }
 
@@ -125,13 +125,13 @@ public class KotlinDynamicSqlSupportClassGenerator {
     private String calculateInnerInitializationString(IntrospectedColumn column, FullyQualifiedKotlinType kt) {
         StringBuilder initializationString = new StringBuilder();
         
-        initializationString.append(String.format("column<%s>(\"%s\", JDBCType.%s", //$NON-NLS-1$
+        initializationString.append(String.format("column<%s>(\"%s\", JDBCType.%s",
                 kt.getShortNameWithTypeArguments(),
                 escapeStringForKotlin(getEscapedColumnName(column)),
                 column.getJdbcTypeName()));
         
         if (StringUtility.stringHasValue(column.getTypeHandler())) {
-            initializationString.append(String.format(", \"%s\")", column.getTypeHandler())); //$NON-NLS-1$
+            initializationString.append(String.format(", \"%s\")", column.getTypeHandler()));
         } else {
             initializationString.append(')');
         }

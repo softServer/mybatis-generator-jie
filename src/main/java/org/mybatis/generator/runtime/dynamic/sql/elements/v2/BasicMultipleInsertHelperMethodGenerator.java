@@ -43,22 +43,22 @@ public class BasicMultipleInsertHelperMethodGenerator extends AbstractMethodGene
         Set<FullyQualifiedJavaType> imports = new HashSet<>();
         
         imports.add(new FullyQualifiedJavaType(
-                "org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider")); //$NON-NLS-1$
+                "org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider"));
         
         FullyQualifiedJavaType parameterType =
                 new FullyQualifiedJavaType(
-                        "org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider"); //$NON-NLS-1$
+                        "org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider");
         imports.add(recordType);
         parameterType.addTypeArgument(recordType);
         
-        Method method = new Method("insertMultiple"); //$NON-NLS-1$
+        Method method = new Method("insertMultiple");
         method.setDefault(true);
         method.setReturnType(FullyQualifiedJavaType.getIntInstance());
-        method.addParameter(new Parameter(parameterType, "multipleInsertStatement")); //$NON-NLS-1$
+        method.addParameter(new Parameter(parameterType, "multipleInsertStatement"));
         context.getCommentGenerator().addGeneralMethodAnnotation(method, introspectedTable, imports);
         method.addBodyLine(
-                "return insertMultiple(multipleInsertStatement.getInsertStatement()," //$NON-NLS-1$
-                + " multipleInsertStatement.getRecords());"); //$NON-NLS-1$
+                "return insertMultiple(multipleInsertStatement.getInsertStatement(),"
+                + " multipleInsertStatement.getRecords());");
 
         MethodAndImports.Builder builder = MethodAndImports.withMethod(method)
                 .withImports(imports);

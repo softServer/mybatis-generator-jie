@@ -26,9 +26,9 @@ public class KotlinType extends KotlinNamedItemContainer {
     private List<String> superTypes = new ArrayList<>();
 
     public enum Type {
-        CLASS("class"), //$NON-NLS-1$
-        INTERFACE("interface"), //$NON-NLS-1$
-        OBJECT("object"); //$NON-NLS-1$
+        CLASS("class"),
+        INTERFACE("interface"),
+        OBJECT("object");
 
         private String value;
 

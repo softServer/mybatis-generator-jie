@@ -28,16 +28,16 @@ public class BasicDeleteMethodGenerator extends AbstractKotlinFunctionGenerator 
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction("delete") //$NON-NLS-1$
-                .withExplicitReturnType("Int") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("deleteStatement") //$NON-NLS-1$
-                        .withDataType("DeleteStatementProvider") //$NON-NLS-1$)
+                KotlinFunction.newOneLineFunction("delete")
+                .withExplicitReturnType("Int")
+                .withArgument(KotlinArg.newArg("deleteStatement")
+                        .withDataType("DeleteStatementProvider")
                         .build())
-                .withAnnotation("@DeleteProvider(type=SqlProviderAdapter::class, method=\"delete\")") //$NON-NLS-1$
+                .withAnnotation("@DeleteProvider(type=SqlProviderAdapter::class, method=\"delete\")")
                 .build())
-                .withImport("org.mybatis.dynamic.sql.delete.render.DeleteStatementProvider") //$NON-NLS-1$
-                .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter") //$NON-NLS-1$
-                .withImport("org.apache.ibatis.annotations.DeleteProvider") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.delete.render.DeleteStatementProvider")
+                .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter")
+                .withImport("org.apache.ibatis.annotations.DeleteProvider")
                 .build();
         
         addFunctionComment(functionAndImports);

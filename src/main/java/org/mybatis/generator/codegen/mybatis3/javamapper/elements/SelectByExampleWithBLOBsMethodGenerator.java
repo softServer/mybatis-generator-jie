@@ -59,8 +59,15 @@ public class SelectByExampleWithBLOBsMethodGenerator extends
         importedTypes.add(listType);
         returnType.addTypeArgument(listType);
         method.setReturnType(returnType);
-        method.addParameter(new Parameter(type, "example")); //$NON-NLS-1$
+        method.addParameter(new Parameter(type, "example", "@Param(\"example\")"));
 
+        FullyQualifiedJavaType integerType = FullyQualifiedJavaType.getIntInstance();
+        importedTypes.add(integerType);
+        method.addParameter(new Parameter(integerType, "offSet", "@Param(\"offSet\")"));
+        method.addParameter(new Parameter(integerType, "pageSize", "@Param(\"pageSize\")"));
+
+        importedTypes.add(new FullyQualifiedJavaType(
+                "org.apache.ibatis.annotations.Param"));
         context.getCommentGenerator().addGeneralMethodComment(method,
                 introspectedTable);
 

@@ -49,7 +49,7 @@ public class DynamicSqlMapperGeneratorV1 extends AbstractDynamicSqlMapperGenerat
     
     @Override
     public List<CompilationUnit> getCompilationUnits() {
-        progressCallback.startTask(getString("Progress.17", //$NON-NLS-1$
+        progressCallback.startTask(getString("Progress.17",
                 introspectedTable.getFullyQualifiedTable().toString()));
         preCalculate();
         
@@ -57,7 +57,7 @@ public class DynamicSqlMapperGeneratorV1 extends AbstractDynamicSqlMapperGenerat
 
         TopLevelClass supportClass = getSupportClass();
         String staticImportString =
-                supportClass.getType().getFullyQualifiedNameWithoutTypeParameters() + ".*"; //$NON-NLS-1$
+                supportClass.getType().getFullyQualifiedNameWithoutTypeParameters() + ".*";
         interfaze.addStaticImport(staticImportString);
 
         addBasicCountMethod(interfaze);

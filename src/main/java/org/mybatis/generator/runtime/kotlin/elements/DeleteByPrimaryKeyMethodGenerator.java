@@ -39,10 +39,10 @@ public class DeleteByPrimaryKeyMethodGenerator extends AbstractKotlinFunctionGen
         }
         
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".deleteByPrimaryKey") //$NON-NLS-1$
-                .withCodeLine("delete {") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction(mapperName + ".deleteByPrimaryKey")
+                .withCodeLine("delete {")
                 .build())
-                .withImport("org.mybatis.dynamic.sql.SqlBuilder.isEqualTo") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.SqlBuilder.isEqualTo")
                 .build();
         
         addFunctionComment(functionAndImports);

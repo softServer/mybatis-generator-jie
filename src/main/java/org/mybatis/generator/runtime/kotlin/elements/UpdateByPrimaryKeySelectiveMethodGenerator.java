@@ -43,11 +43,11 @@ public class UpdateByPrimaryKeySelectiveMethodGenerator extends AbstractKotlinFu
         }
         
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction(mapperName + ".updateByPrimaryKeySelective") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("record") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction(mapperName + ".updateByPrimaryKeySelective")
+                .withArgument(KotlinArg.newArg("record")
                         .withDataType(recordType.getShortNameWithTypeArguments())
                         .build())
-                .withCodeLine("update {") //$NON-NLS-1$
+                .withCodeLine("update {")
                 .build())
                 .withImports(recordType.getImportList())
                 .build();

@@ -28,16 +28,16 @@ public class BasicCountMethodGenerator extends AbstractKotlinFunctionGenerator {
     @Override
     public KotlinFunctionAndImports generateMethodAndImports() {
         KotlinFunctionAndImports functionAndImports = KotlinFunctionAndImports.withFunction(
-                KotlinFunction.newOneLineFunction("count") //$NON-NLS-1$
-                .withExplicitReturnType("Long") //$NON-NLS-1$
-                .withArgument(KotlinArg.newArg("selectStatement") //$NON-NLS-1$
-                        .withDataType("SelectStatementProvider") //$NON-NLS-1$
+                KotlinFunction.newOneLineFunction("count")
+                .withExplicitReturnType("Long")
+                .withArgument(KotlinArg.newArg("selectStatement")
+                        .withDataType("SelectStatementProvider")
                         .build())
-                .withAnnotation("@SelectProvider(type=SqlProviderAdapter::class, method=\"select\")") //$NON-NLS-1$
+                .withAnnotation("@SelectProvider(type=SqlProviderAdapter::class, method=\"select\")")
                 .build())
-                .withImport("org.mybatis.dynamic.sql.select.render.SelectStatementProvider") //$NON-NLS-1$
-                .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter") //$NON-NLS-1$
-                .withImport("org.apache.ibatis.annotations.SelectProvider") //$NON-NLS-1$
+                .withImport("org.mybatis.dynamic.sql.select.render.SelectStatementProvider")
+                .withImport("org.mybatis.dynamic.sql.util.SqlProviderAdapter")
+                .withImport("org.apache.ibatis.annotations.SelectProvider")
                 .build();
         
         addFunctionComment(functionAndImports);

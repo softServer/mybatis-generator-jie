@@ -46,12 +46,12 @@ public class JavaClientGeneratorConfiguration extends TypedPropertyHolder {
 
     public void validate(List<String> errors, String contextId) {
         if (!stringHasValue(targetProject)) {
-            errors.add(getString("ValidationError.2", contextId)); //$NON-NLS-1$
+            errors.add(getString("ValidationError.2", contextId));
         }
 
         if (!stringHasValue(targetPackage)) {
-            errors.add(getString("ValidationError.12", //$NON-NLS-1$
-                    "javaClientGenerator", contextId)); //$NON-NLS-1$
+            errors.add(getString("ValidationError.12",
+                    "javaClientGenerator", contextId));
         }
     }
 }
