@@ -57,6 +57,8 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         topLevelClass.setVisibility(JavaVisibility.PUBLIC);
         commentGenerator.addJavaFileComment(topLevelClass);
 
+        FullyQualifiedJavaType superClass = new FullyQualifiedJavaType("com.ishare.goodsrecycle.base.BaseExample");
+        //todo 填充泛型，作为exmaple的父类
         // add default constructor
         Method method = new Method(type.getShortName());
         method.setVisibility(JavaVisibility.PUBLIC);
