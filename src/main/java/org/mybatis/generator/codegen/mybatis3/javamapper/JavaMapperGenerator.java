@@ -55,6 +55,22 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         interfaze.setVisibility(JavaVisibility.PUBLIC);
         commentGenerator.addJavaFileComment(interfaze);
 
+        FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
+                introspectedTable.getExampleType());
+        FullyQualifiedJavaType keyType = introspectedTable.getPrimaryKeyColumns()
+                .get(0).getFullyQualifiedJavaType();
+        FullyQualifiedJavaType recordType = new FullyQualifiedJavaType(
+                introspectedTable.getBaseRecordType());
+
+        // 填充泛型，作为exmaple的父类的泛型参数
+        FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType("com.ishare.goodsrecycle.base.DataMapper");
+        superInterface.addTypeArgument(recordType);
+        superInterface.addTypeArgument(exampleType);
+        superInterface.addTypeArgument(keyType);
+        //interfaze.set;
+        interfaze.addSuperInterface(superInterface);
+        interfaze.addImportedType(superInterface);
+
         String rootInterface = introspectedTable
                 .getTableConfigurationProperty(PropertyRegistry.ANY_ROOT_INTERFACE);
         if (!stringHasValue(rootInterface)) {
