@@ -81,7 +81,7 @@ public class SelectFieldByExampleWithoutBLOBsElementGenerator extends
 
         ifElement = new XmlElement("if");
         ifElement.addAttribute(new Attribute("test", "offSet != null and pageSize != null"));
-        ifElement.addElement(new TextElement(" limit ${offSet},$(pageSize) "));
+        ifElement.addElement(new TextElement(" limit ${offSet},${pageSize} "));
         answer.addElement(ifElement);
 
         if (context.getPlugins()
