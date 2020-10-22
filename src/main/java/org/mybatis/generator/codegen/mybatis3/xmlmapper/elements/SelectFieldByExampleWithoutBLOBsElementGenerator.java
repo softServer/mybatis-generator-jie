@@ -76,7 +76,7 @@ public class SelectFieldByExampleWithoutBLOBsElementGenerator extends
 
         ifElement = new XmlElement("if");
         ifElement.addAttribute(new Attribute("test", "example != null and example.orderByClause != null"));
-        ifElement.addElement(new TextElement("order by ${orderByClause}"));
+        ifElement.addElement(new TextElement("order by ${example.orderByClause}"));
         answer.addElement(ifElement);
 
         ifElement = new XmlElement("if");
