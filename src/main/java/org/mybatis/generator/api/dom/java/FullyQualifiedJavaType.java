@@ -308,6 +308,14 @@ public class FullyQualifiedJavaType implements
         return dateInstance;
     }
 
+    public static final FullyQualifiedJavaType getLocalDateTimeInstance() {
+        if (dateInstance == null) {
+            dateInstance = new FullyQualifiedJavaType("java.time.LocalDateTime");
+        }
+
+        return dateInstance;
+    }
+
     public static final FullyQualifiedJavaType getCriteriaInstance() {
         if (criteriaInstance == null) {
             criteriaInstance = new FullyQualifiedJavaType("Criteria");

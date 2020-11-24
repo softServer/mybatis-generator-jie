@@ -21,6 +21,7 @@ import static org.mybatis.generator.internal.util.messages.Messages.getString;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Properties;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
@@ -63,7 +64,7 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
                 introspectedTable.getBaseRecordType());
 
         // 填充泛型，作为exmaple的父类的泛型参数
-        FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType("com.ishare.goodsrecycle.base.DataMapper");
+        FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType(getRootMapper());
         superInterface.addTypeArgument(recordType);
         superInterface.addTypeArgument(exampleType);
         superInterface.addTypeArgument(keyType);
@@ -114,6 +115,18 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         }
 
         return answer;
+    }
+
+    public String getRootMapper() {
+        String rootClass = introspectedTable
+                .getTableConfigurationProperty(PropertyRegistry.ANY_ROOT_MAPPER);
+        if (rootClass == null) {
+            Properties properties = context
+                    .getJavaModelGeneratorConfiguration().getProperties();
+            rootClass = properties.getProperty(PropertyRegistry.ANY_ROOT_MAPPER);
+        }
+
+        return rootClass;
     }
 
     protected void addCountByExampleMethod(Interface interfaze) {

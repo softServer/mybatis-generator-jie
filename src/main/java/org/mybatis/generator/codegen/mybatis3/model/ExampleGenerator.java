@@ -22,6 +22,7 @@ import static org.mybatis.generator.internal.util.messages.Messages.getString;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.FullyQualifiedTable;
@@ -37,6 +38,7 @@ import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.codegen.AbstractJavaGenerator;
 import org.mybatis.generator.codegen.mybatis3.MyBatis3FormattingUtilities;
+import org.mybatis.generator.config.PropertyRegistry;
 
 public class ExampleGenerator extends AbstractJavaGenerator {
 
@@ -58,7 +60,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         commentGenerator.addJavaFileComment(topLevelClass);
 
         // 填充泛型，作为exmaple的接口的泛型参数
-        FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType("com.ishare.goodsrecycle.base.BaseExample");
+        FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType(getRootExample());
 
         FullyQualifiedJavaType argumentType = new FullyQualifiedJavaType(type.getFullyQualifiedName().concat(".Criteria"));
         topLevelClass.addImportedType(argumentType);
@@ -196,6 +198,18 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             answer.add(topLevelClass);
         }
         return answer;
+    }
+
+    public String getRootExample() {
+        String rootClass = introspectedTable
+                .getTableConfigurationProperty(PropertyRegistry.ANY_ROOT_EXAMPLE);
+        if (rootClass == null) {
+            Properties properties = context
+                    .getJavaModelGeneratorConfiguration().getProperties();
+            rootClass = properties.getProperty(PropertyRegistry.ANY_ROOT_EXAMPLE);
+        }
+
+        return rootClass;
     }
 
     private InnerClass getCriterionInnerClass() {
@@ -511,12 +525,14 @@ public class ExampleGenerator extends AbstractJavaGenerator {
         }
         answer.addMethod(method);
 
+        /*FullyQualifiedJavaType listOfDates = new FullyQualifiedJavaType(
+                "java.util.List<java.util.Date>");*/
         FullyQualifiedJavaType listOfDates = new FullyQualifiedJavaType(
-                "java.util.List<java.util.Date>");
+                "java.util.List<java.time.LocalDateTime>");
 
         if (introspectedTable.hasJDBCDateColumns()) {
             topLevelClass.addImportedType(FullyQualifiedJavaType
-                    .getDateInstance());
+                    .getLocalDateTimeInstance());
             topLevelClass.addImportedType(FullyQualifiedJavaType
                     .getNewIteratorInstance());
             method = new Method("addCriterionForJDBCDate");
@@ -524,7 +540,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "condition"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
-                    .getDateInstance(), "value"));
+                    .getLocalDateTimeInstance(), "value"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "property"));
             method.addBodyLine("if (value == null) {");
@@ -565,9 +581,9 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "condition"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
-                    .getDateInstance(), "value1"));
+                    .getLocalDateTimeInstance(), "value1"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
-                    .getDateInstance(), "value2"));
+                    .getLocalDateTimeInstance(), "value2"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "property"));
             method.addBodyLine("if (value1 == null || value2 == null) {");
@@ -583,7 +599,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
 
         if (introspectedTable.hasJDBCTimeColumns()) {
             topLevelClass.addImportedType(FullyQualifiedJavaType
-                    .getDateInstance());
+                    .getLocalDateTimeInstance());
             topLevelClass.addImportedType(FullyQualifiedJavaType
                     .getNewIteratorInstance());
             method = new Method("addCriterionForJDBCTime");
@@ -591,7 +607,7 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "condition"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
-                    .getDateInstance(), "value"));
+                    .getLocalDateTimeInstance(), "value"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "property"));
             method.addBodyLine("if (value == null) {");
@@ -632,9 +648,9 @@ public class ExampleGenerator extends AbstractJavaGenerator {
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "condition"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
-                    .getDateInstance(), "value1"));
+                    .getLocalDateTimeInstance(), "value1"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
-                    .getDateInstance(), "value2"));
+                    .getLocalDateTimeInstance(), "value2"));
             method.addParameter(new Parameter(FullyQualifiedJavaType
                     .getStringInstance(), "property"));
             method.addBodyLine("if (value1 == null || value2 == null) {");

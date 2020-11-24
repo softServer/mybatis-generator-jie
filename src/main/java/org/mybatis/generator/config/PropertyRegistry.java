@@ -32,6 +32,8 @@ public class PropertyRegistry {
      * recognized by table and java model generator.
      */
     public static final String ANY_ROOT_CLASS = "rootClass";
+    public static final String ANY_ROOT_EXAMPLE = "rootExample";
+    public static final String ANY_ROOT_MAPPER = "rootMapper";
     public static final String ANY_IMMUTABLE = "immutable";
     public static final String ANY_CONSTRUCTOR_BASED = "constructorBased";
 

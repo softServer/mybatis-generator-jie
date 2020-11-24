@@ -31,7 +31,7 @@
 		</javaTypeResolver>
 		
 		<!-- 生成实体类地址 -->	
-		<javaModelGenerator targetPackage="com.ishare.goodsrecycle.entity"
+		<javaModelGenerator targetPackage="com.ishare.litemall.db.entity"
 			targetProject="${project}" >
 			<!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->
 			<property name="enableSubPackages" value="false"/>
@@ -42,90 +42,26 @@
 				注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
 					1，属性名相同，类型相同，有相同的getter/setter方法；
 			 -->
-			<property name="rootClass" value="com.ishare.goodsrecycle.base.BaseEntity"/>
+			<property name="rootClass" value="com.ishare.litemall.db.base.BaseEntity"/>
+            <property name="rootMapper" value="com.ishare.litemall.db.base.DataMapper"/>
+            <property name="rootExample" value="com.ishare.litemall.db.base.BaseExample"/>
 		</javaModelGenerator>
 		
 		<!-- 生成mapper.xml文件 -->
-		<sqlMapGenerator targetPackage="mapper"
+		<sqlMapGenerator targetPackage="com.ishare.litemall.db.dao"
 			targetProject="${resource}" >
 			<!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		
 		<!-- 生成mapper.xml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="com.ishare.goodsrecycle.dao"
+		<javaClientGenerator targetPackage="com.ishare.litemall.db.dao"
 			targetProject="${project}" type="XMLMAPPER" >
 			<!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 
-        <table schema="recycle" tableName="article"
-               enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
 
-
-        <table schema="recycle" tableName="interface_manage"
-               enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
-		<table schema="recycle" tableName="category"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="category_address_price"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="order_row"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="purchaser"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="purchaser_position"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="receive_address"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="recycle_order"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="user_info"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="user_weixin_info"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="weixin_info"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
-		<table schema="recycle" tableName="wx_code_openid"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
-		</table>
 		<!-- 配置表信息，这里每生成一张表，这里需要改变一次对应表名 -->
 		<!-- <table schema="qqdata" tableName="QQ_ACCOUNT"
 			domainObjectName="QqAccunt" enableCountByExample="true"

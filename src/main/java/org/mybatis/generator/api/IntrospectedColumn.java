@@ -207,13 +207,13 @@ public class IntrospectedColumn {
 
     public boolean isJDBCDateColumn() {
         return fullyQualifiedJavaType.equals(FullyQualifiedJavaType
-                .getDateInstance())
+                .getLocalDateTimeInstance())
                 && "DATE".equalsIgnoreCase(jdbcTypeName);
     }
 
     public boolean isJDBCTimeColumn() {
         return fullyQualifiedJavaType.equals(FullyQualifiedJavaType
-                .getDateInstance())
+                .getLocalDateTimeInstance())
                 && "TIME".equalsIgnoreCase(jdbcTypeName);
     }
 
