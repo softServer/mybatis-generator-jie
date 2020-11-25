@@ -16,6 +16,7 @@
 package org.mybatis.generator.api;
 
 import java.sql.Types;
+import java.util.Objects;
 import java.util.Properties;
 
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -263,6 +264,12 @@ public class IntrospectedColumn {
     }
 
     public void setTableAlias(String tableAlias) {
+        if (Objects.isNull(tableAlias)) {
+            return ;
+        }
+        if (!tableAlias.startsWith("`") && !tableAlias.endsWith("`")) {
+            tableAlias = "`" + tableAlias + "`";
+        }
         this.tableAlias = tableAlias;
     }
 
