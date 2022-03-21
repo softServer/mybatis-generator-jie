@@ -184,7 +184,11 @@ public class FullyQualifiedTable {
 
         if (stringHasValue(alias)) {
             sb.append(' ');
-            sb.append(alias);
+            if(!alias.endsWith("`") && !alias.startsWith("`")) {
+                sb.append("`").append(alias).append("`");
+            } else {
+                sb.append(alias);
+            }
         }
 
         return sb.toString();

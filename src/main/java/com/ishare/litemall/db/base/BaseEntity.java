@@ -1,4 +1,4 @@
-package com.ishare.goodsrecycle.base;
+package com.ishare.litemall.db.base;
 
 
 import java.io.Serializable;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class BaseEntity  implements Serializable
 {
 
-    private LocalDateTime createTime;
+    private LocalDateTime addTime;
 
     private LocalDateTime updateTime;
 
@@ -23,12 +23,12 @@ public class BaseEntity  implements Serializable
 
     private Boolean valid;
 
-    public LocalDateTime getCreateTime() {
-        return this.createTime;
+    public LocalDateTime getAddTime() {
+        return this.addTime;
     }
 
-    public void setCreateTime(final LocalDateTime createTime) {
-        this.createTime = createTime;
+    public void setAddTime(final LocalDateTime addTime) {
+        this.addTime = addTime;
     }
 
     public LocalDateTime getUpdateTime() {
@@ -39,11 +39,11 @@ public class BaseEntity  implements Serializable
         this.updateTime = updateTime;
     }
 
-    public String getCreateBy() {
+    public String getAddBy() {
         return this.createBy;
     }
 
-    public void setCreateBy(final String createBy) {
+    public void setAddBy(final String createBy) {
         this.createBy = createBy;
     }
 

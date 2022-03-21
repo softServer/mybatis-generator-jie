@@ -63,9 +63,9 @@ public class Context extends PropertyHolder {
 
     private ModelType defaultModelType;
 
-    private String beginningDelimiter = "\"";
+    private String beginningDelimiter = "`";
 
-    private String endingDelimiter = "\"";
+    private String endingDelimiter = "`";
 
     private CommentGeneratorConfiguration commentGeneratorConfiguration;
 
@@ -79,7 +79,8 @@ public class Context extends PropertyHolder {
 
     private String introspectedColumnImpl;
 
-    private Boolean autoDelimitKeywords;
+    // 默认true
+    private Boolean autoDelimitKeywords = true;
 
     private JavaFormatter javaFormatter;
 

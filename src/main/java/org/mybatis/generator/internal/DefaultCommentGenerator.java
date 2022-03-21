@@ -255,9 +255,6 @@ public class DefaultCommentGenerator implements CommentGenerator {
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable,
             IntrospectedColumn introspectedColumn) {
-        if (suppressAllComments) {
-            return;
-        }
 
         field.addJavaDocLine("/**");
 

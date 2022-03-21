@@ -48,7 +48,11 @@ public class StringUtility {
             }
         }
 
-        sb.append(tableName);
+        if (!tableName.startsWith("`") && !tableName.endsWith("`")) {
+            sb.append("`").append(tableName).append("`");
+        } else {
+            sb.append(tableName);
+        }
 
         return sb.toString();
     }

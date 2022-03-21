@@ -17,8 +17,8 @@ package org.mybatis.generator.internal.types;
 
 import java.math.BigDecimal;
 import java.sql.Types;
-import java.util.Date;
 import java.util.HashMap;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -67,7 +67,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         typeMap.put(Types.DATALINK, new JdbcTypeInformation("DATALINK",
                 new FullyQualifiedJavaType(Object.class.getName())));
         typeMap.put(Types.DATE, new JdbcTypeInformation("DATE",
-                new FullyQualifiedJavaType(Date.class.getName())));
+                new FullyQualifiedJavaType(LocalDateTime.class.getName())));
         typeMap.put(Types.DECIMAL, new JdbcTypeInformation("DECIMAL",
                 new FullyQualifiedJavaType(BigDecimal.class.getName())));
         typeMap.put(Types.DISTINCT, new JdbcTypeInformation("DISTINCT",
@@ -108,9 +108,9 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         typeMap.put(Types.STRUCT, new JdbcTypeInformation("STRUCT",
                 new FullyQualifiedJavaType(Object.class.getName())));
         typeMap.put(Types.TIME, new JdbcTypeInformation("TIME",
-                new FullyQualifiedJavaType(Date.class.getName())));
+                new FullyQualifiedJavaType(LocalDateTime.class.getName())));
         typeMap.put(Types.TIMESTAMP, new JdbcTypeInformation("TIMESTAMP",
-                new FullyQualifiedJavaType(Date.class.getName())));
+                new FullyQualifiedJavaType(LocalDateTime.class.getName())));
         typeMap.put(Types.TINYINT, new JdbcTypeInformation("TINYINT",
                 new FullyQualifiedJavaType(Byte.class.getName())));
         typeMap.put(Types.VARBINARY, new JdbcTypeInformation("VARBINARY",
@@ -121,7 +121,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         typeMap.put(Types.TIME_WITH_TIMEZONE, new JdbcTypeInformation("TIME_WITH_TIMEZONE",
                 new FullyQualifiedJavaType("java.time.OffsetTime")));
         typeMap.put(Types.TIMESTAMP_WITH_TIMEZONE, new JdbcTypeInformation("TIMESTAMP_WITH_TIMEZONE",
-                new FullyQualifiedJavaType("java.time.OffsetDateTime")));
+                new FullyQualifiedJavaType("java.time.OffsetLocalDateTimeTime")));
     }
 
     @Override
@@ -159,7 +159,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
             answer = calculateBitReplacement(column, defaultType);
             break;
         case Types.DATE:
-            answer = calculateDateType(column, defaultType);
+            answer = calculateLocalDateTimeType(column, defaultType);
             break;
         case Types.DECIMAL:
         case Types.NUMERIC:
@@ -178,11 +178,11 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         return answer;
     }
     
-    protected FullyQualifiedJavaType calculateDateType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
+    protected FullyQualifiedJavaType calculateLocalDateTimeType(IntrospectedColumn column, FullyQualifiedJavaType defaultType) {
         FullyQualifiedJavaType answer;
         
         if (useJSR310Types) {
-            answer = new FullyQualifiedJavaType("java.time.LocalDate");
+            answer = new FullyQualifiedJavaType("java.time.LocalLocalDateTime");
         } else {
             answer = defaultType;
         }
@@ -207,7 +207,7 @@ public class JavaTypeResolverDefaultImpl implements JavaTypeResolver {
         FullyQualifiedJavaType answer;
         
         if (useJSR310Types) {
-            answer = new FullyQualifiedJavaType("java.time.LocalDateTime");
+            answer = new FullyQualifiedJavaType("java.time.LocalLocalDateTimeTime");
         } else {
             answer = defaultType;
         }

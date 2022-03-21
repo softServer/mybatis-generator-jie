@@ -327,9 +327,7 @@ public class DatabaseIntrospector {
                     }
                 }
 
-                if (context.autoDelimitKeywords()
-                        && SqlReservedWords.containsWord(introspectedColumn
-                            .getActualColumnName())) {
+                if (context.autoDelimitKeywords()) {
                     introspectedColumn.setColumnNameDelimited(true);
                 }
 
