@@ -57,8 +57,10 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
 
         FullyQualifiedJavaType exampleType = new FullyQualifiedJavaType(
                 introspectedTable.getExampleType());
-        FullyQualifiedJavaType keyType = introspectedTable.getPrimaryKeyColumns()
-                .get(0).getFullyQualifiedJavaType();
+        FullyQualifiedJavaType keyType = null;
+        if (introspectedTable.getPrimaryKeyColumns() != null && introspectedTable.getPrimaryKeyColumns().size() > 0) {
+            keyType =  introspectedTable.getPrimaryKeyColumns().get(0).getFullyQualifiedJavaType();
+        }
         FullyQualifiedJavaType recordType = new FullyQualifiedJavaType(
                 introspectedTable.getBaseRecordType());
 
@@ -66,7 +68,9 @@ public class JavaMapperGenerator extends AbstractJavaClientGenerator {
         FullyQualifiedJavaType superInterface = new FullyQualifiedJavaType("com.ishare.goodsrecycle.base.DataMapper");
         superInterface.addTypeArgument(recordType);
         superInterface.addTypeArgument(exampleType);
-        superInterface.addTypeArgument(keyType);
+        if (keyType != null) {
+            superInterface.addTypeArgument(keyType);
+        }
         //interfaze.set;
         interfaze.addSuperInterface(superInterface);
         interfaze.addImportedType(superInterface);

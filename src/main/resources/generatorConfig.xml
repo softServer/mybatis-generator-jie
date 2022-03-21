@@ -16,8 +16,8 @@
         <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
 
         <!-- 这里的type里写的是你的实现类的类全路径 -->
-        <!--<commentGenerator type="cn.jie.sql.fromtable.mybatisgenerator.plugin.MyCommentGenerator">
-        </commentGenerator>-->
+        <commentGenerator type="org.mybatis.generator.plugins.MyCommentGenerator">
+        </commentGenerator>
 		
 		<!-- jdbc连接 -->
 		<jdbcConnection driverClass="${jdbc_driver}"
@@ -31,7 +31,7 @@
 		</javaTypeResolver>
 		
 		<!-- 生成实体类地址 -->	
-		<javaModelGenerator targetPackage="com.ishare.goodsrecycle.entity"
+		<javaModelGenerator targetPackage="com.ybjdw.company.bean"
 			targetProject="${project}" >
 			<!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->
 			<property name="enableSubPackages" value="false"/>
@@ -42,90 +42,857 @@
 				注意：如果在key class或者record class中有root class相同的属性，MBG就不会重新生成这些属性了，包括：
 					1，属性名相同，类型相同，有相同的getter/setter方法；
 			 -->
-			<property name="rootClass" value="com.ishare.goodsrecycle.base.BaseEntity"/>
+			<property name="rootClass" value="com.ybjdw.base.mybatis.util.BaseEntity"/>
 		</javaModelGenerator>
 		
 		<!-- 生成mapper.xml文件 -->
-		<sqlMapGenerator targetPackage="mapper"
+		<sqlMapGenerator targetPackage="com.ybjdw.company.mapper"
 			targetProject="${resource}" >
 			<!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->
 			<property name="enableSubPackages" value="false" />
 		</sqlMapGenerator>
 		
 		<!-- 生成mapper.xml对应client，也就是接口dao -->
-		<javaClientGenerator targetPackage="com.ishare.goodsrecycle.dao"
+		<javaClientGenerator targetPackage="com.ybjdw.company.dao"
 			targetProject="${project}" type="XMLMAPPER" >
 			<!-- 是否在当前路径下新加一层schema,eg：fase路径cn.ffcs.test.domain"， true:cn.ffcs.test.domain".[schemaName] -->
 			<property name="enableSubPackages" value="false" />
 		</javaClientGenerator>
 
-        <table schema="recycle" tableName="article"
-               enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
 
+		<table schema="ymhc" tableName="active_members"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="active_test"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="activities"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="activities_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="activities_enroll"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="activity_order_statics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ad_apply"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ad_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ad_item"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ad_permissions"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ad_resource"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ad_resource_permissions"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ad_sequence_num"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="adviser_server"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="album_order_enroll_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="album_programs"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="albums_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="albums_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="application_version"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="apply_intervention"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="apply_intervention_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="award_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="bank_transfer_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="big_data"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="bloc"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="bloc_company_relevance"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="brands_info_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="brands_info_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="brands_info_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="brands_show"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="browse_history"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="browse_history_bak"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_account"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_account_closing"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_account_into"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_account_outof"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_account_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_bankcard"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_partners"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cash_withdrawal_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="channels_demand"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="channels_demand_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="channels_info_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="channels_info_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="channels_info_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="chat_conversation_list"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="chat_msg_list"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="chat_user_list"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="column_style"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_busi_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_contact_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_contact_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_contact_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_frozen"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_info_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_info_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_info_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_join_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_label"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_notes"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_offline"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_plate_relate"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="company_recommend_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="concern_count"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="concern_dynamic"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="confrim_contract"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="confrim_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="constant_data"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="content_transform"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="cooperative_intention"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="coupon_company"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="coupon_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="coupon_use_records"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="delivery_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="department"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="dept_contact_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="dept_contact_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="dept_contact_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="design_studio_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="design_studio_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="design_studio_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="dynamic"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="dynamic_recommend_push"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="dynamic_recommend_push_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="education_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="enroll_set"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="entry_order_import"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="export_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="files_manage"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="follow_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="freight_allocation"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="guestbook_message"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="guestbook_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="im_msg_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="im_user_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="info_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="info_content"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="info_enroll"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="info_invite"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="info_manage"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="infomanage_refresh_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="inventory_change"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="invitation_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="invoice_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="invoice_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="invoice_title"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_evaluation"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_explosion_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_inventory"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_inventory_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_inventory_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_price_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_price_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_sale_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_theme"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_theme_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_theme_relate"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="item_wms_import"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="kpi_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="language_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="logistics_company"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="logistics_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="maidian_account"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="maidian_account_into"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="maidian_account_outof"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="maidian_commodity"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="maidian_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="maidian_price"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="mall_info_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="mall_info_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="mall_info_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="mall_releaseinfo"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="mall_releaseinfo_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="manage_jurisdiction"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="manage_role"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="manage_user"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="manage_user_table"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="marketing_activities"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="marketing_activities_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="model"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="more_than_half"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="mq_message"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="my_folder"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="online_pay_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="order_abnormal_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
 
-        <table schema="recycle" tableName="interface_manage"
-               enableCountByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               enableUpdateByExample="true">
-        </table>
-		<table schema="recycle" tableName="category"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="order_cancel_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="category_address_price"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="order_pay"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="order_row"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="order_pay_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="purchaser"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="order_pay_split"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="purchaser_position"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="order_pay_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="receive_address"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="order_theme_item"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="recycle_order"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="order_truck"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="user_info"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="orderprice_modify"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="user_weixin_info"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="orderprice_modify_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="weixin_info"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="ordertype_payorder_relation"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
-		<table schema="recycle" tableName="wx_code_openid"
-			   enableCountByExample="true"
-			   enableDeleteByExample="true" enableSelectByExample="true"
-			   enableUpdateByExample="true">
+		<table schema="ymhc" tableName="ordertype_payway_relation"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
 		</table>
+		<table schema="ymhc" tableName="package_company"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="package_item"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="package_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="package_res_company"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="package_resources"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="page_manage"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="partner_grade"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="pay_overdue"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="pay_record_relate"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="person_title_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="person_title_info_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="phone_directories"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="phone_record_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="picture"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="platform_plate"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="position_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="position_collection_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="position_info"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="pre_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="privacy"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_concern"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_index_position"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_index_resource"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_rule"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_supplier"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="product_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="project_experience"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="purchase_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="purchase_order_row"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="push_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="push_tag"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="push_user"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qm_entry_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qm_item_sync"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qm_out_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qm_return_entry"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_blob_triggers"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_calendars"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_cron_triggers"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_fired_triggers"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_job_details"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_locks"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_paused_trigger_grps"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_scheduler_state"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_simple_triggers"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_simprop_triggers"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="qrtz_triggers"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_activities"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_brand"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_browse"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_code_openid"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_prize"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_signup"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_signup_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_visit_brand"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="rating_vote"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="receipt_address"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="recommend_dynamic"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="recommend_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="recommendation"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="recommendation_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="recommendation_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="recommendation_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="recruit_refresh_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="refresh_failed_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="refund_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="refund_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="region"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="register_award"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="related_products"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="remind_push"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="resume_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="resume_collection_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="resume_download_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="resume_info_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="resume_info_h"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="resume_info_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="role_jurisdiction_relate"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="search_history"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="selected_message"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="service_interface"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="special_activities"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="special_activities_apply"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="special_activities_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="special_activities_enroll"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="special_enroll_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="spot_order"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="static_data"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="statistics_multi_val"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="supplier_order_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="supplier_product_statistics"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="task"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="task_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="task_bid"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="template"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="traded_item_audit"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="traded_item_e"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="traded_item_v"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="truck_goods_row"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="truck_invite"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="use_set_records"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="user_collection"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="user_concern"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="user_message"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="user_order_award"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="user_role_relate"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="user_tag_relation"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="view_contact_record"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="view_contact_record_detail"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="wms_kuaidi_logistic"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="work_address"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="work_experience"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="wx_code_openid"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="ymhc_rule"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+		<table schema="ymhc" tableName="user_traded"
+			   enableCountByExample="true" enableDeleteByExample="true" enableSelectByExample="true" enableUpdateByExample="true">
+		</table>
+
 		<!-- 配置表信息，这里每生成一张表，这里需要改变一次对应表名 -->
 		<!-- <table schema="qqdata" tableName="QQ_ACCOUNT"
 			domainObjectName="QqAccunt" enableCountByExample="true"
